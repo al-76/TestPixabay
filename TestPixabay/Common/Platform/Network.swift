@@ -1,5 +1,5 @@
 //
-//  DefaultNetwork.swift
+//  Network.swift
 //  TestPixabay
 //
 //  Created by Vyacheslav Konopkin on 25.11.2022.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-final class DefaultNetwork: Network {
+final class Network {
     private let urlCache = URLCache(memoryCapacity: 1024 * 1024 * 10,
                             diskCapacity: 1024 * 1024 * 50)
 

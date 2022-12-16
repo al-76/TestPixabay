@@ -7,6 +7,6 @@
 
 import Combine
 
-protocol PicturesRepository {
-    func read(query: String, page: Int) -> AnyPublisher<[Picture], Error>
+struct PicturesRepository {
+    var read: (/* query */String, /* page */Int) -> AnyPublisher<[Picture], Error>
 }

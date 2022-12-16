@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ErrorView: View {
-    let error: Error
+    let errorMessage: String
 
     var body: some View {
         Label {
-            Text("Error: \(error.localizedDescription)")
+            Text("Error: \(errorMessage)")
         } icon: {
             Image(systemName: "xmark.app")
                     .foregroundColor(Color.red)
@@ -22,6 +22,6 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(error: URLError(.badURL))
+        ErrorView(errorMessage: URLError(.badURL).localizedDescription)
     }
 }

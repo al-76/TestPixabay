@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct TestPixabayApp: App {
+    init() {
+        initializePlatform()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PicturesView(store: Store(
+                initialState: PicturesReducer.State(),
+                reducer: PicturesReducer()
+            ))
         }
     }
 }
