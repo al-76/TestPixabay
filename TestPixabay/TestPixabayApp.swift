@@ -11,7 +11,7 @@ import SwiftUI
 struct TestPixabayApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PicturesView()
         }
     }
 }

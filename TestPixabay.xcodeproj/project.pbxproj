@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CD2BAD12292EBBFC00A617C8 /* TestPixabayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2BAD11292EBBFC00A617C8 /* TestPixabayApp.swift */; };
-		CD2BAD14292EBBFC00A617C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2BAD13292EBBFC00A617C8 /* ContentView.swift */; };
 		CD2BAD16292EBBFF00A617C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD2BAD15292EBBFF00A617C8 /* Assets.xcassets */; };
 		CD2BAD19292EBBFF00A617C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD2BAD18292EBBFF00A617C8 /* Preview Assets.xcassets */; };
 		CD2BAD2D292EBBFF00A617C8 /* TestPixabayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2BAD2C292EBBFF00A617C8 /* TestPixabayUITests.swift */; };
@@ -61,7 +60,6 @@
 /* Begin PBXFileReference section */
 		CD2BAD0E292EBBFC00A617C8 /* TestPixabay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPixabay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2BAD11292EBBFC00A617C8 /* TestPixabayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPixabayApp.swift; sourceTree = "<group>"; };
-		CD2BAD13292EBBFC00A617C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CD2BAD15292EBBFF00A617C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD2BAD18292EBBFF00A617C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CD2BAD1E292EBBFF00A617C8 /* TestPixabayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestPixabayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +148,6 @@
 				CDFD85982943965D006C9C4C /* Common */,
 				CDFD859729439613006C9C4C /* PicturesFeature */,
 				CD2BAD11292EBBFC00A617C8 /* TestPixabayApp.swift */,
-				CD2BAD13292EBBFC00A617C8 /* ContentView.swift */,
 				CD2BAD15292EBBFF00A617C8 /* Assets.xcassets */,
 				CD2BAD17292EBBFF00A617C8 /* Preview Content */,
 			);
@@ -584,7 +581,6 @@
 				CD2BAD3F292EC0E900A617C8 /* PicturesViewModel.swift in Sources */,
 				CD96909F29303BAE00ECB3B1 /* DefaultPicturesRepository.swift in Sources */,
 				CD9690A829303D6E00ECB3B1 /* PicturesResponseDTO.swift in Sources */,
-				CD2BAD14292EBBFC00A617C8 /* ContentView.swift in Sources */,
 				CD2BAD4B292EC2F600A617C8 /* ViewModel+onSuccess.swift in Sources */,
 				CD9D9994292FE64D002B14E0 /* PictureDetailsView.swift in Sources */,
 				CD2BAD12292EBBFC00A617C8 /* TestPixabayApp.swift in Sources */,
