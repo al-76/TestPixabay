@@ -148,7 +148,7 @@
 			children = (
 				CD9690C52930EEEC00ECB3B1 /* Info.plist */,
 				CDFD85982943965D006C9C4C /* Common */,
-				CDFD859729439613006C9C4C /* Pictures */,
+				CDFD859729439613006C9C4C /* PicturesFeature */,
 				CD2BAD11292EBBFC00A617C8 /* TestPixabayApp.swift */,
 				CD2BAD13292EBBFC00A617C8 /* ContentView.swift */,
 				CD2BAD15292EBBFF00A617C8 /* Assets.xcassets */,
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				CD9690B72930D8E000ECB3B1 /* Common */,
-				CDFD859E2943973B006C9C4C /* Pictures */,
+				CDFD859E2943973B006C9C4C /* PicturesFeature */,
 			);
 			path = TestPixabayTests;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CDFD859729439613006C9C4C /* Pictures */ = {
+		CDFD859729439613006C9C4C /* PicturesFeature */ = {
 			isa = PBXGroup;
 			children = (
 				CD9690A029303BF300ECB3B1 /* Platform */,
@@ -370,7 +370,7 @@
 				CD2BAD44292EC1B000A617C8 /* Domain */,
 				CD2BAD3B292EC09100A617C8 /* UI */,
 			);
-			path = Pictures;
+			path = PicturesFeature;
 			sourceTree = "<group>";
 		};
 		CDFD85982943965D006C9C4C /* Common */ = {
@@ -424,14 +424,14 @@
 			path = UseCase;
 			sourceTree = "<group>";
 		};
-		CDFD859E2943973B006C9C4C /* Pictures */ = {
+		CDFD859E2943973B006C9C4C /* PicturesFeature */ = {
 			isa = PBXGroup;
 			children = (
 				CD9690AF2930D56F00ECB3B1 /* Domain */,
 				CD9690AE2930D56800ECB3B1 /* UI */,
 				CD9690B02930D57500ECB3B1 /* Data */,
 			);
-			path = Pictures;
+			path = PicturesFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
