@@ -25,8 +25,7 @@ final class PicturesReducerTests: XCTestCase {
 
     func testFetch() async {
         // Arrange
-        let data = [Picture(id: 1000)]
-        store.dependencies.picturesRepository.read = { _, _ in successAnswer(data) }
+        store.dependencies.picturesClient.read = { _, _ in successAnswer(.stub) }
 
         // Act
         await store.send(.fetch("test")) {
@@ -35,16 +34,16 @@ final class PicturesReducerTests: XCTestCase {
         }
 
         // Assert
-        await store.receive(.fetchResult(data)) {
+        await store.receive(.fetchResult(.stub)) {
             $0.isLoading = false
-            $0.pictures = data
+            $0.pictures = .stub
         }
     }
 
     func testFetchError() async {
         // Arrange
         let errorMessage = TestError.someError.localizedDescription
-        store.dependencies.picturesRepository.read = { _, _ in failAnswer() }
+        store.dependencies.picturesClient.read = { _, _ in failAnswer() }
 
         // Act
         await store.send(.fetch("test")) {
@@ -61,9 +60,9 @@ final class PicturesReducerTests: XCTestCase {
 
     func testFetchMore() async {
         // Arrange
-        let data = [Picture(id: 0), Picture(id: 1000)]
-        let addData = [Picture(id: 2000)]
-        store.dependencies.picturesRepository.read = { _, _ in successAnswer(data) }
+        let data = Array([Picture].stub.prefix(2))
+        let addData = Array([Picture].stub.suffix(1))
+        store.dependencies.picturesClient.read = { _, _ in successAnswer(data) }
         await store.send(.fetch("test")) {
             $0.isLoading = true
             $0.page = 1
@@ -75,7 +74,7 @@ final class PicturesReducerTests: XCTestCase {
         }
 
         // Act
-        store.dependencies.picturesRepository.read = { _, _ in successAnswer(addData) }
+        store.dependencies.picturesClient.read = { _, _ in successAnswer(addData) }
         await store.send(.fetchMore("test", data.last!)) {
             $0.isLoading = true
             $0.page = 2

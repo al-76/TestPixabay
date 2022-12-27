@@ -24,7 +24,7 @@ struct PicturesReducer: ReducerProtocol {
         case failure(String)
     }
 
-    @Dependency(\.picturesRepository) var picturesRepository
+    @Dependency(\.picturesClient) var picturesClient
 
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
@@ -60,14 +60,9 @@ struct PicturesReducer: ReducerProtocol {
     private func reduceFetch(page: Int,
                              query: String,
                              pictures: [Picture] = []) -> EffectTask<Action> {
-        picturesRepository.read(query, page)
-            .map {
-                .fetchResult(pictures + $0)
-            }
-            .catch {
-                Just(.failure($0.localizedDescription))
-                    .eraseToAnyPublisher()
-            }
+        picturesClient.read(query, page)
+            .map { .fetchResult(pictures + $0) }
+            .catch { Just(.failure($0.localizedDescription)) }
             .receive(on: DispatchQueue.main)
             .eraseToEffect()
     }

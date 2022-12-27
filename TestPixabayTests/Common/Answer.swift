@@ -1,11 +1,15 @@
 //
-//  TestAnswer.swift
+//  Answer.swift
 //  TestPixabayTests
 //
 //  Created by Vyacheslav Konopkin on 25.11.2022.
 //
 
 import Combine
+
+enum TestError: Error {
+    case someError
+}
 
 func successAnswer<T>(_ data: T) -> AnyPublisher<T, Error> {
     Just(data)
@@ -20,10 +24,5 @@ func failAnswer<T>(_ error: Error = TestError.someError) -> AnyPublisher<T, Erro
 
 func failAnswer<T>(_ error: Error, _ type: T.Type) -> AnyPublisher<T, Error> {
     Fail<T, Error>(error: error)
-        .eraseToAnyPublisher()
-}
-
-func noAnswer<T>() -> AnyPublisher<T, Error> {
-    Empty<T, Error>()
         .eraseToAnyPublisher()
 }

@@ -1,5 +1,5 @@
 //
-//  DefaultPicturesRepository.swift
+//  PicturesClientImpl.swift
 //  TestPixabay
 //
 //  Created by Vyacheslav Konopkin on 25.11.2022.
@@ -10,8 +10,15 @@ import ComposableArchitecture
 import Foundation
 import XCTestDynamicOverlay
 
-extension PicturesRepository: DependencyKey {
-    static var liveValue: PicturesRepository { Self(read: { query, page in
+struct PicturesResponse: Codable {
+    let hits: [Picture]
+}
+
+private let network = Network()
+
+// MARK: - Live
+extension PicturesClient {
+    static var live = Self(read: { query, page in
         // Read api key
         let apiKey = Bundle.main.object(forInfoDictionaryKey: "PixabayApiKey") as? String ??
         "Please insert PixabayApiKey to Info.plist"
@@ -24,27 +31,27 @@ extension PicturesRepository: DependencyKey {
             URLQueryItem(name: "image_type", value: "photo"),
             URLQueryItem(name: "page", value: "\(page)")
         ]
-        let url = components.url!
-        print(url)
 
         // Do a request
         return network
-            .request(url: url)
-            .decode(type: PicturesResponseDTO.self, decoder: JSONDecoder())
+            .request(url: components.url!)
+            .decode(type: PicturesResponse.self, decoder: JSONDecoder())
             .map { $0.hits }
             .eraseToAnyPublisher()
-    }) }
-
-    static var testValue: PicturesRepository {
-        Self(read: unimplemented("PicturesRepository.read"))
-    }
+    })
 }
 
-private let network = Network()
-
-extension DependencyValues {
-  var picturesRepository: PicturesRepository {
-    get { self[PicturesRepository.self] }
-    set { self[PicturesRepository.self] = newValue }
-  }
+// MARK: - Preview
+extension PicturesClient {
+    static var preview = Self(read: { _, _ in
+        Just(.stub)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    })
 }
+
+// MARK: - Test
+extension PicturesClient {
+    static var test = Self(read: unimplemented("TestPicturesClient"))
+}
+
