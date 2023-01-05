@@ -20,8 +20,7 @@ struct PicturesReducer: ReducerProtocol {
     enum Action: Equatable {
         case fetch(String)
         case fetchMore(String, Picture)
-        case fetchResult([Picture])
-        case failure(String)
+        case fetchResult(TaskResult<[Picture]>)
     }
 
     @Dependency(\.picturesClient) var picturesClient
@@ -44,25 +43,25 @@ struct PicturesReducer: ReducerProtocol {
             return reduceFetch(page: state.page, query: query,
                                pictures: state.pictures)
 
-        case let .failure(errorMessage):
+        case let .fetchResult(.failure(error)):
             state.isLoading = false
-            state.errorMessage = errorMessage
-            return .none
+            state.errorMessage = error.localizedDescription
 
-        case .fetchResult(let pictures):
+        case let .fetchResult(.success(pictures)):
             state.isLoading = false
             state.pictures = pictures
             state.errorMessage = nil
-            return .none
         }
+
+        return .none
     }
 
     private func reduceFetch(page: Int,
                              query: String,
                              pictures: [Picture] = []) -> EffectTask<Action> {
         picturesClient.read(query, page)
-            .map { .fetchResult(pictures + $0) }
-            .catch { Just(.failure($0.localizedDescription)) }
+            .map { .fetchResult(.success(pictures + $0)) }
+            .catch { Just(.fetchResult(.failure($0))) }
             .receive(on: DispatchQueue.main)
             .eraseToEffect()
     }

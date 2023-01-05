@@ -34,7 +34,7 @@ final class PicturesReducerTests: XCTestCase {
         }
 
         // Assert
-        await store.receive(.fetchResult(.stub)) {
+        await store.receive(.fetchResult(.success(.stub))) {
             $0.isLoading = false
             $0.pictures = .stub
         }
@@ -42,7 +42,6 @@ final class PicturesReducerTests: XCTestCase {
 
     func testFetchError() async {
         // Arrange
-        let errorMessage = TestError.someError.localizedDescription
         store.dependencies.picturesClient.read = { _, _ in failAnswer() }
 
         // Act
@@ -52,9 +51,9 @@ final class PicturesReducerTests: XCTestCase {
         }
 
         // Assert
-        await store.receive(.failure(errorMessage)) {
+        await store.receive(.fetchResult(.failure(TestError.someError))) {
             $0.isLoading = false
-            $0.errorMessage = errorMessage
+            $0.errorMessage = TestError.someError.localizedDescription
         }
     }
 
@@ -68,7 +67,7 @@ final class PicturesReducerTests: XCTestCase {
             $0.page = 1
             $0.pictures = []
         }
-        await store.receive(.fetchResult(data)) {
+        await store.receive(.fetchResult(.success(data))) {
             $0.isLoading = false
             $0.pictures = data
         }
@@ -82,7 +81,7 @@ final class PicturesReducerTests: XCTestCase {
         }
 
         // Assert
-        await store.receive(.fetchResult(data + addData)) {
+        await store.receive(.fetchResult(.success(data + addData))) {
             $0.isLoading = false
             $0.page = 2
             $0.pictures = data + addData
